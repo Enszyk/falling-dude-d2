@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "67676337358",
+    "project_id": "falling-dude-2d",
+    "storage_bucket": "falling-dude-2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67676337358:android:ad3fdcd2af8586171d8c9f",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.com.unity.template.mobile2D"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67676337358-69dt3bg89e3eo4jhp5si4upmi6suvod6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp_iuH7BFU6zpjYR47rCTSALh2GDJRpck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67676337358-69dt3bg89e3eo4jhp5si4upmi6suvod6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
