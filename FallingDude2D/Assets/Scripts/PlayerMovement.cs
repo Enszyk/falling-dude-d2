@@ -30,6 +30,14 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
+        if (_isMoveRight)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (_isMoveLeft)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
         if (isMidAir()) return;
         
         if (_isJumpLoading)
