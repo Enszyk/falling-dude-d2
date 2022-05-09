@@ -24,7 +24,7 @@ Library/
 [Aa]ssets/Plugins/Editor/JetBrains*
 
 #Firebase
-[Aa]ssets/Firebase
+/[Aa]ssets/Firebase
 [Aa]ssets/Plugins
 [Aa]ssets/Editor Default Resources
 [Aa]ssets/ExternalDependencyManager
