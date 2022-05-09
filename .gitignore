@@ -27,7 +27,7 @@
 
 crashlytics-build.properties
 
-.DS_Store
+*.DS_Store
 FallingDude2D/.DS_Store
 *.meta
 
