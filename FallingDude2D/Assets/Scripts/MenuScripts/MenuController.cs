@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject startScreen;
+    [SerializeField]private GameObject startScreen;
     [SerializeField] private GameObject signInScreen;
     [SerializeField] private GameObject profileScreen;
     [SerializeField] private GameObject menuScreen;
+    [SerializeField] private GameObject optionsScreen;
     [SerializeField] private GameObject errorScreen;
     [SerializeField] private GameObject errorMessage;
+    [SerializeField] private GameObject backgroundMusic;
     [SerializeField] private float screenChangeSpeed;
     private GameObject currentScreen;
     private GameObject nextScreen;
@@ -23,10 +25,16 @@ public class MenuController : MonoBehaviour
     private void Awake()
     {
         startScreen.SetActive(false);
+        signInScreen.SetActive(false);
+        profileScreen.SetActive(false);
+        optionsScreen.SetActive(false);
+        errorScreen.SetActive(false);
         menuScreen.SetActive(false);
 
         mainPosition = startScreen.GetComponent<RectTransform>().anchoredPosition;
         currentScreen = startScreen;
+
+        backgroundMusic.GetComponent<AudioSource>().volume = Settings.musicVolume;
     }
 
     private void Update()
@@ -99,6 +107,11 @@ public class MenuController : MonoBehaviour
     public void GoToProfile()
     {
         ChangeScreen(profileScreen);
+    }
+
+    public void GoToOptions()
+    {
+        ChangeScreen(optionsScreen);
     }
 
     IEnumerator Wait(float seconds)
