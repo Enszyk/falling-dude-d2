@@ -14,32 +14,50 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speedWhenJumping;
     private Rigidbody2D _body;
     private BoxCollider2D _boxCollider2D;
+    private Animator _anim;
 
     private bool _isMoveRight = false;
     private bool _isMoveLeft = false;
     private bool _isJumpLoading = false;
+    private bool _lastMoveRight = false;
     private float _jumpLoadingTime = 0f;
+    private bool duringJump = false; 
+    private static readonly int Run = Animator.StringToHash("run");
 
 
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
+        _anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-
-        if (_isMoveRight)
+    ;
+        if (_lastMoveRight)
         {
             transform.localScale = Vector3.one;
         }
-        else if (_isMoveLeft)
+        else
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        if (isMidAir()) return;
-        
+
+        if (isMidAir())
+        {
+            if (_body.velocity.y < 0 && duringJump)
+            {
+                _anim.SetBool("jumpingDown", true);
+            }
+            return;
+        }
+
+        if (_anim.GetBool("jumpingDown"))
+        {
+            _anim.SetBool("jumpingDown", false);
+        }
+
         if (_isJumpLoading)
         {
             _jumpLoadingTime += Time.deltaTime;
@@ -47,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isMoveLeft && !_isJumpLoading)
         {
+            
             if (_body.velocity.x >= -maxSpeed)
             {
                 _body.velocity = new Vector2(_body.velocity.x - speedIncrementPerTick, _body.velocity.y);
@@ -64,18 +83,23 @@ public class PlayerMovement : MonoBehaviour
 
     public void GoRight()
     {
+        _anim.SetBool(Run, !isMidAir());
+        _lastMoveRight = true;
         _isMoveLeft = false;
         _isMoveRight = true;
     }
 
     public void GoLeft()
     {
+        _anim.SetBool(Run, !isMidAir());
+        _lastMoveRight = false;
         _isMoveLeft = true;
         _isMoveRight = false;
     }
 
     public void StopMovement()
     {
+        _anim.SetBool(Run, false);
         _isMoveLeft = false;
         _isMoveRight = false;
     }
@@ -84,10 +108,13 @@ public class PlayerMovement : MonoBehaviour
     {
         
         _isJumpLoading = true;
+        _anim.SetBool("isLoadingJump", true);
     }
 
     public void ReleaseJump()
     {
+        duringJump = true;
+        _anim.SetBool("isLoadingJump", false);
         _isJumpLoading = false;
         if (!isMidAir())
         {
@@ -112,8 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMidAir()
     {
-        // return false;
-        return _body.velocity.y > 0.0000001f || _body.velocity.y < -0.0000001f;
+        return Math.Abs(_body.velocity.y) > 0.001f;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
