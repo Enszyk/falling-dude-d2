@@ -56,7 +56,10 @@ public class MenuController : MonoBehaviour
                 fadeOut = false;
                 currentScreen.SetActive(false);
                 currentScreen = nextScreen;
-                currentScreen.GetComponent<RectTransform>().anchoredPosition = mainPosition;
+                currentScreen.GetComponent<RectTransform>().SetBottom(50);
+                currentScreen.GetComponent<RectTransform>().SetTop(400);
+                currentScreen.GetComponent<RectTransform>().SetLeft(55);
+                currentScreen.GetComponent<RectTransform>().SetRight(55);
                 currentScreen.GetComponent<CanvasGroup>().alpha = 0;
                 currentScreen.SetActive(true);
                 fadeIn = true;
@@ -119,4 +122,27 @@ public class MenuController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
+}
+
+public static class RectTransformExtensions
+{
+    public static void SetLeft(this RectTransform rt, float left)
+    {
+        rt.offsetMin = new Vector2(left, rt.offsetMin.y);
+    }
+
+    public static void SetRight(this RectTransform rt, float right)
+    {
+        rt.offsetMax = new Vector2(-right, rt.offsetMax.y);
+    }
+
+    public static void SetTop(this RectTransform rt, float top)
+    {
+        rt.offsetMax = new Vector2(rt.offsetMax.x, -top);
+    }
+
+    public static void SetBottom(this RectTransform rt, float bottom)
+    {
+        rt.offsetMin = new Vector2(rt.offsetMin.x, bottom);
+    }
 }
