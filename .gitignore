@@ -37,6 +37,9 @@ FallingDude2D/[Aa]ssets/ExternalDependencyManager
 
 crashlytics-build.properties
 
+# user setting
+FallingDude2D/UserSettings/EditorUserSettings.asset
+
 *.DS_Store
 FallingDude2D/.DS_Store
 
