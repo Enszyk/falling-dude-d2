@@ -9,6 +9,8 @@ public class AuthManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject menuController;
+    [SerializeField]
+    private GameObject currentUser;
 
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -61,6 +63,7 @@ public class AuthManager : MonoBehaviour
 
             yield return new WaitUntil(predicate: () => reloadUserTask.IsCompleted);
 
+            currentUser.GetComponent<CurrentUser>().SetUserId(user.UserId);
             menuController.GetComponent<MenuController>().GoToMenu();
         }
         else
@@ -138,6 +141,7 @@ public class AuthManager : MonoBehaviour
         {
             user = LoginTask.Result;
             Debug.Log("User signed in successfully");
+            currentUser.GetComponent<CurrentUser>().SetUserId(user.UserId);
             menuController.GetComponent<MenuController>().GoToMenu();
         }
     }
