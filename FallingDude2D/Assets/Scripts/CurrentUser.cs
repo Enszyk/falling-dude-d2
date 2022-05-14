@@ -32,6 +32,18 @@ public class CurrentUser : MonoBehaviour
         GetUserData();
     }
 
+    public void SetBirthDate(string birthDate)
+    {
+        string[] dateFields = birthDate.Split('-');
+
+        System.Int32.TryParse(dateFields[0], out int day);
+        System.Int32.TryParse(dateFields[1], out int month);
+        System.Int32.TryParse(dateFields[2], out int year);
+
+        var birthDateTime = new System.DateTime(year, month, day);
+        userData.BirthDate = Timestamp.FromDateTime(birthDateTime);
+    }
+
     public void WriteUser()
     {
         firestore.Document("users/" + userId).SetAsync(userData);
