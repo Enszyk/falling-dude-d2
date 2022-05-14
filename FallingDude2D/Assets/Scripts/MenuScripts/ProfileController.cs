@@ -1,21 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ProfileController : MonoBehaviour
 {
+    [SerializeField] private GameObject mainScreen;
+    [SerializeField] private GameObject editScreen;
+
     [SerializeField] private GameObject nicknameText;
     [SerializeField] private GameObject nameText;
     [SerializeField] private GameObject surnameText;
     [SerializeField] private GameObject birthDateText;
 
+    [SerializeField] private TMP_InputField nicknameField;
+    [SerializeField] private TMP_InputField nameField;
+    [SerializeField] private TMP_InputField surnameField;
+    [SerializeField] private TMP_InputField birthDateField;
+
     [SerializeField] private GameObject currentUser;
 
     private void OnEnable()
     {
+        mainScreen.SetActive(true);
+        mainScreen.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
+        editScreen.SetActive(false);
+
         var userData = currentUser.GetComponent<CurrentUser>().userData;
-        Debug.Log(userData.Name);
         nicknameText.GetComponent<TextMeshProUGUI>().text = userData.Nickname;
         nameText.GetComponent<TextMeshProUGUI>().text = userData.Name;
         surnameText.GetComponent<TextMeshProUGUI>().text = userData.Surname;
@@ -30,6 +42,27 @@ public class ProfileController : MonoBehaviour
         int years = (zeroTime + span).Year - 1;
 
         return $"{years} lat";
+    }
+
+    public void GoToEdit()
+    {
+        mainScreen.SetActive(false);
+        editScreen.SetActive(true);
+        editScreen.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
+
+        var userData = currentUser.GetComponent<CurrentUser>().userData;
+
+        nicknameField.text = userData.Nickname;
+        nameField.text = userData.Name;
+        surnameField.text = userData.Surname;
+        birthDateField.text = userData.BirthDate.ToString();
+    }
+
+    public void Save()
+    {
+        editScreen.SetActive(false);
+        mainScreen.SetActive(true);
+        mainScreen.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
     }
 
 }
