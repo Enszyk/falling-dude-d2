@@ -4,9 +4,12 @@ using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using TMPro;
+using UnityEngine.UI;
 
 public class AuthManager : MonoBehaviour
 {
+    private static AuthManager instance;
+
     [SerializeField]
     private GameObject menuController;
     [SerializeField]
@@ -21,6 +24,21 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField email;
     public TMP_InputField password;
     public string message = "";
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            menuController.GetComponent<MenuController>().DisableMenu();
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != null && instance != this)
+        {
+            instance.menuController = GameObject.Find("MenuController");
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -94,6 +112,8 @@ public class AuthManager : MonoBehaviour
 
     public void SignInButton()
     {
+        email = GameObject.Find("LoginField").GetComponent<TMP_InputField>();
+        password = GameObject.Find("PasswordField").GetComponent<TMP_InputField>();
         StartCoroutine(SignIn());
     }
 

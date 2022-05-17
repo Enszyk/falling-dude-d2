@@ -29,7 +29,8 @@ public class MenuController : MonoBehaviour
         profileScreen.SetActive(false);
         optionsScreen.SetActive(false);
         errorScreen.SetActive(false);
-        menuScreen.SetActive(false);
+
+        GoToMenu();
 
         mainPosition = startScreen.GetComponent<RectTransform>().anchoredPosition;
         currentScreen = startScreen;
@@ -64,6 +65,11 @@ public class MenuController : MonoBehaviour
             }
         }
 
+    }
+
+    public void DisableMenu()
+    {
+        menuScreen.SetActive(false);
     }
 
     private void ChangeScreen(GameObject screen)
