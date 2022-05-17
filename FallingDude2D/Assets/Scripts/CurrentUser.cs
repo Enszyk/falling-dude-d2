@@ -9,7 +9,7 @@ public class CurrentUser : MonoBehaviour
     private static CurrentUser instance;
 
     public User userData;
-    private string userId;
+    public string userId;
 
     private FirebaseFirestore firestore;
 
@@ -44,6 +44,13 @@ public class CurrentUser : MonoBehaviour
         userData.BirthDate = Timestamp.FromDateTime(birthDateTime);
     }
 
+    private void startMusic()
+    {
+        GameObject backgroundMusic = GameObject.Find("BackgroundMusic");
+        backgroundMusic.GetComponent<AudioSource>().Play();
+        backgroundMusic.GetComponent<AudioSource>().volume = Settings.musicVolume;
+    }
+
     public void WriteUser()
     {
         firestore.Document("users/" + userId).SetAsync(userData);
@@ -56,6 +63,10 @@ public class CurrentUser : MonoBehaviour
             if (task.Exception == null)
             {
                 userData = task.Result.ConvertTo<User>();
+                Settings.hudVisibility = userData.HudVisibility;
+                Settings.isTimerOn = userData.IsTimerOn;
+                Settings.musicVolume = userData.MusicVolume;
+                startMusic();
                 Debug.Log(userData.Name);
             }
             else

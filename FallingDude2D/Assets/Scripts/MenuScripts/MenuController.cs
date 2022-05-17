@@ -33,8 +33,6 @@ public class MenuController : MonoBehaviour
 
         mainPosition = startScreen.GetComponent<RectTransform>().anchoredPosition;
         currentScreen = startScreen;
-
-        backgroundMusic.GetComponent<AudioSource>().volume = Settings.musicVolume;
     }
 
     private void Update()
