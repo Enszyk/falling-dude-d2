@@ -1600,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4644,6 +4644,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &831066278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8229752974478421411, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
+  m_PrefabInstance: {fileID: 412301371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &831066283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831066278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cd7afb9f8d94d0688f2224815925ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &864193434
 GameObject:
   m_ObjectHideFlags: 0
@@ -7147,7 +7164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421411, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_Name
-      value: SignInButton
+      value: SignInScreenButton
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -7227,6 +7244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007f182374ea40fa964986a411f953a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userId: 
 --- !u!1 &1223544163
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,7 +7464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

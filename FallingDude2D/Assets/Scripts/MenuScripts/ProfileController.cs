@@ -23,6 +23,18 @@ public class ProfileController : MonoBehaviour
 
     [SerializeField] private GameObject currentUser;
 
+    private void Awake()
+    {
+        currentUser = GameObject.Find("CurrentUser");
+    }
+
+    private void Start()
+    {
+        var signOutButton = GameObject.Find("SignOutButton").GetComponent<Button>();
+        var authManager = GameObject.Find("AuthManager").GetComponent<AuthManager>();
+        signOutButton.onClick.AddListener(delegate { authManager.SignOutButton(); });
+    }
+
     private void OnEnable()
     {
         GoToMain();
