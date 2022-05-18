@@ -93,6 +93,18 @@ public class MenuController : MonoBehaviour
         ChangeScreen(startScreen);
     }
 
+    public void SignIn()
+    {
+        var authManager = GameObject.Find("AuthManager").GetComponent<AuthManager>();
+        authManager.SignInButton();
+    }
+
+    public void SignOut()
+    {
+        var authManager = GameObject.Find("AuthManager").GetComponent<AuthManager>();
+        authManager.SignOutButton();
+    }
+
     public void ShowError(string message)
     {
         errorScreen.GetComponent<RectTransform>().anchoredPosition =
