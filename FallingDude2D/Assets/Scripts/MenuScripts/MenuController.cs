@@ -12,6 +12,11 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject profileScreen;
     [SerializeField] private GameObject menuScreen;
     [SerializeField] private GameObject optionsScreen;
+    [SerializeField] private GameObject levelsScreen;
+    [SerializeField] private GameObject levelMenuScreen;
+
+    [SerializeField] private GameObject confirmScreen;
+
     [SerializeField] private GameObject errorScreen;
     [SerializeField] private GameObject errorMessage;
     [SerializeField] private GameObject backgroundMusic;
@@ -29,6 +34,9 @@ public class MenuController : MonoBehaviour
         profileScreen.SetActive(false);
         optionsScreen.SetActive(false);
         errorScreen.SetActive(false);
+        levelsScreen.SetActive(false);
+        confirmScreen.SetActive(false);
+        levelMenuScreen.SetActive(false);
 
         GoToMenu();
 
@@ -83,14 +91,32 @@ public class MenuController : MonoBehaviour
         ChangeScreen(signInScreen);
     }
 
-    public void StartGame()
+    public void GoToLevels()
     {
-        SceneManager.LoadScene("Game");
+        ChangeScreen(levelsScreen);
     }
 
     public void GoToStartScreen()
     {
         ChangeScreen(startScreen);
+    }
+
+    public void GoToLevelMenu(string name)
+    {
+        levelMenuScreen.GetComponent<LevelMenuController>().levelMenuName = name;
+        ChangeScreen(levelMenuScreen);
+    }
+
+    public void ShowConfirmationScreen()
+    {
+        confirmScreen.GetComponent<RectTransform>().anchoredPosition =
+            new Vector3(mainPosition.x, mainPosition.y + 100, mainPosition.z);
+        confirmScreen.SetActive(true);
+    }
+
+    public void HideConfirmScreen()
+    {
+        confirmScreen.SetActive(false);
     }
 
     public void SignIn()

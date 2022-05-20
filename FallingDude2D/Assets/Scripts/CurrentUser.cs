@@ -9,6 +9,7 @@ public class CurrentUser : MonoBehaviour
     private static CurrentUser instance;
 
     public User userData;
+    public Levels userLevels;
     public string userId;
 
     private FirebaseFirestore firestore;
@@ -56,6 +57,24 @@ public class CurrentUser : MonoBehaviour
         firestore.Document("users/" + userId).SetAsync(userData);
     }
 
+    public void GetUserLevels()
+    {
+        firestore.Document("levels/" + userId).GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            if(task.Exception == null)
+            {
+                userLevels = task.Result.ConvertTo<Levels>();
+                Debug.Log("levels loaded");
+            }
+            else
+            {
+                Debug.Log(task.Exception);
+                userLevels = new Levels();
+            }
+
+        });
+    } 
+
     public void GetUserData()
     {
         firestore.Document("users/" + userId).GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -63,11 +82,12 @@ public class CurrentUser : MonoBehaviour
             if (task.Exception == null)
             {
                 userData = task.Result.ConvertTo<User>();
+                GetUserLevels();
                 Settings.hudVisibility = userData.HudVisibility;
                 Settings.isTimerOn = userData.IsTimerOn;
                 Settings.musicVolume = userData.MusicVolume;
                 startMusic();
-                Debug.Log(userData.Name);
+                Debug.Log("user loaded");
             }
             else
             {

@@ -120,6 +120,7 @@ public class GameController : MonoBehaviour
             secondsS = "0" + secondsS;
         return $"{hoursS}:{minutesS}:{secondsS}";
     }
+
     private void DisplayTime()
     {
         

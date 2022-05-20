@@ -6771,7 +6771,7 @@ GameObject:
   - component: {fileID: 1062870304}
   - component: {fileID: 1062870303}
   m_Layer: 5
-  m_Name: SettingsTitle
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16150,7 +16150,7 @@ GameObject:
   - component: {fileID: 2100019888}
   - component: {fileID: 2100019887}
   m_Layer: 5
-  m_Name: OptionsScreen
+  m_Name: ResultScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
