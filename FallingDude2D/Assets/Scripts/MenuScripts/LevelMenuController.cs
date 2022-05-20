@@ -25,6 +25,8 @@ public class LevelMenuController : MonoBehaviour
         if (currentUser.userData.Name == null)
             return;
 
+        levelName.text = levelMenuName;
+
         Dictionary<string, object> level = new Dictionary<string, object>();
         if (levelMenuName== "Level 1")
             level = currentUser.userLevels.Level1;
@@ -35,9 +37,15 @@ public class LevelMenuController : MonoBehaviour
 
 
         if (!(bool)level["Finished"])
+        {
             trophyImage.color = new Color32(0, 0, 0, 255);
+        }
+        else
+        {
+            trophyImage.color = new Color32(255, 255, 255, 255);
+        }
 
-        var time = (float)System.Convert.ChangeType(level["Time"], typeof(float));
+        var time = (int)System.Convert.ChangeType(level["Time"], typeof(int));
         if (time == 0)
             resetButton.interactable = false;
 
@@ -72,21 +80,31 @@ public class LevelMenuController : MonoBehaviour
     public void Reset()
     {
         if (levelMenuName == "Level 1")
+        {
             currentUser.userLevels.Level1["Time"] = 0;
+            currentUser.userLevels.Level1["Finished"] = false;
+        }
         else if (levelMenuName == "Level 2")
+        {
             currentUser.userLevels.Level2["Time"] = 0;
+            currentUser.userLevels.Level2["Finished"] = false;
+        }
         else if (levelMenuName == "Level 3")
+        {
             currentUser.userLevels.Level3["Time"] = 0;
+            currentUser.userLevels.Level3["Finished"] = false;
+        }
 
         menuController.HideConfirmScreen();
         GoBack();
+        currentUser.WriteLevels();
     }
 
-    private string FormatTime(float timeSeconds)
+    private string FormatTime(int timeSeconds)
     {
-        var hours = timeSeconds / 3600;
-        var minutes = (timeSeconds % 3600) / 60;
-        var seconds = (timeSeconds % 3600) % 60;
+        int hours = timeSeconds / 3600;
+        int minutes = (timeSeconds % 3600) / 60;
+        int seconds = (timeSeconds % 3600) % 60;
 
         var hoursS = $"{hours}";
         if (hours < 10)

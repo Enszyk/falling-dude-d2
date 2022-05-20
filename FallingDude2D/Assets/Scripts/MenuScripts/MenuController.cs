@@ -17,6 +17,8 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] private GameObject confirmScreen;
 
+    [SerializeField] private GameObject loadingScreen;
+
     [SerializeField] private GameObject errorScreen;
     [SerializeField] private GameObject errorMessage;
     [SerializeField] private GameObject backgroundMusic;
@@ -37,8 +39,14 @@ public class MenuController : MonoBehaviour
         levelsScreen.SetActive(false);
         confirmScreen.SetActive(false);
         levelMenuScreen.SetActive(false);
+        loadingScreen.SetActive(false);
 
-        GoToMenu();
+        if (AuthManager.instance != null)
+        {
+            GoToMenu();
+            backgroundMusic.GetComponent<AudioSource>().Play();
+            backgroundMusic.GetComponent<AudioSource>().volume = Settings.musicVolume;
+        }
 
         mainPosition = startScreen.GetComponent<RectTransform>().anchoredPosition;
         currentScreen = startScreen;
@@ -77,7 +85,7 @@ public class MenuController : MonoBehaviour
 
     public void DisableMenu()
     {
-        menuScreen.SetActive(false);
+        menuScreen.GetComponent<CanvasGroup>().alpha = 0;
     }
 
     private void ChangeScreen(GameObject screen)
@@ -99,6 +107,11 @@ public class MenuController : MonoBehaviour
     public void GoToStartScreen()
     {
         ChangeScreen(startScreen);
+    }
+
+    public void ShowLoadingScreen()
+    {
+        ChangeScreen(loadingScreen);
     }
 
     public void GoToLevelMenu(string name)

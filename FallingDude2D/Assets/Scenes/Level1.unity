@@ -3402,7 +3402,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 359.575, y: -585.7839}
+  m_AnchoredPosition: {x: 359.575, y: -519.11725}
   m_SizeDelta: {x: 573.16, y: 108.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571343256
@@ -4742,9 +4742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c50568add844897b9c3ab646c9fe91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvl1: {fileID: 1057426382}
-  lvl2: {fileID: 1057426382}
-  lvl3: {fileID: 0}
   timer: {fileID: 1843137426}
   menu: {fileID: 1347398473}
   options: {fileID: 1150106940}
@@ -6793,7 +6790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 359.575, y: -195.26129}
+  m_AnchoredPosition: {x: 359.575, y: -173.03906}
   m_SizeDelta: {x: 573.16, y: 108.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062870303
@@ -10366,7 +10363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421410, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -996.91144
+      value: -885.8004
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421410, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10402,7 +10399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveAndQuit
+      value: FinishLevel
       objectReference: {fileID: 0}
     - target: {fileID: 8229752974478421413, guid: d645251f3290f43abbadb566dcc4746d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -16147,7 +16144,6 @@ GameObject:
   - component: {fileID: 2100019891}
   - component: {fileID: 2100019890}
   - component: {fileID: 2100019889}
-  - component: {fileID: 2100019888}
   - component: {fileID: 2100019887}
   m_Layer: 5
   m_Name: ResultScreen
@@ -16204,22 +16200,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2100019888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100019885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b594bfda1ec4d38a783ab36f8a0245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMusicSource: {fileID: 604684732}
-  musicSlider: {fileID: 0}
-  hudSlider: {fileID: 0}
-  timerToggle: {fileID: 0}
 --- !u!225 &2100019889
 CanvasGroup:
   m_ObjectHideFlags: 0

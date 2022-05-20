@@ -57,6 +57,11 @@ public class CurrentUser : MonoBehaviour
         firestore.Document("users/" + userId).SetAsync(userData);
     }
 
+    public void WriteLevels()
+    {
+        firestore.Document("levels/" + userId).SetAsync(userLevels);
+    }
+
     public void GetUserLevels()
     {
         firestore.Document("levels/" + userId).GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -65,6 +70,7 @@ public class CurrentUser : MonoBehaviour
             {
                 userLevels = task.Result.ConvertTo<Levels>();
                 Debug.Log("levels loaded");
+                GameObject.Find("MenuController").GetComponent<MenuController>().GoToMenu();
             }
             else
             {

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class AuthManager : MonoBehaviour
 {
-    private static AuthManager instance;
+    public static AuthManager instance;
 
     [SerializeField]
     private GameObject menuController;
@@ -29,7 +29,6 @@ public class AuthManager : MonoBehaviour
     {
         if (instance == null)
         {
-            menuController.GetComponent<MenuController>().DisableMenu();
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -82,7 +81,7 @@ public class AuthManager : MonoBehaviour
             yield return new WaitUntil(predicate: () => reloadUserTask.IsCompleted);
 
             currentUser.GetComponent<CurrentUser>().SetUserId(user.UserId);
-            menuController.GetComponent<MenuController>().GoToMenu();
+            //menuController.GetComponent<MenuController>().ShowLoadingScreen();
         }
         else
         {
@@ -162,7 +161,7 @@ public class AuthManager : MonoBehaviour
             user = LoginTask.Result;
             Debug.Log("User signed in successfully");
             currentUser.GetComponent<CurrentUser>().SetUserId(user.UserId);
-            menuController.GetComponent<MenuController>().GoToMenu();
+            //menuController.GetComponent<MenuController>().ShowLoadingScreen();
         }
     }
 

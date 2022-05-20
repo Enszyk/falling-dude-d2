@@ -34,18 +34,25 @@ public class Level : MonoBehaviour
         if (!(bool)level["Finished"])
         {
             trophyImage.color = new Color32(0, 0, 0, 255);
-            if (levelName.text == "Level 1")
-                levelLock.SetActive(false);
-            else
-                GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            trophyImage.color = new Color32(255, 255, 255, 255);
+        }
+
+        if (!(bool)level["Started"])
+        {
+            levelLock.SetActive(true);
+            GetComponent<Button>().interactable = false;
         }
         else
         {
             levelLock.SetActive(false);
+            GetComponent<Button>().interactable = true;
         }
 
 
-        var time = (float)System.Convert.ChangeType(level["Time"], typeof(float));
+        var time = (int)System.Convert.ChangeType(level["Time"], typeof(int));
         levelTime.text = FormatTime(time);
     }
 
@@ -54,11 +61,11 @@ public class Level : MonoBehaviour
         menuController.GoToLevelMenu(levelName.text);
     }
 
-    private string FormatTime(float timeSeconds)
+    private string FormatTime(int timeSeconds)
     {
-        var hours = timeSeconds / 3600;
-        var minutes = (timeSeconds % 3600) / 60;
-        var seconds = (timeSeconds % 3600) % 60;
+        int hours = timeSeconds / 3600;
+        int minutes = (timeSeconds % 3600) / 60;
+        int seconds = (timeSeconds % 3600) % 60;
 
         var hoursS = $"{hours}";
         if (hours < 10)

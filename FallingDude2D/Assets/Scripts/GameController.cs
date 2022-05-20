@@ -6,16 +6,8 @@ using TMPro;
 using UnityEngine.Serialization;
 
 public class GameController : MonoBehaviour
-{
-    
-    
+{   
     private int timeSeconds = 0;
-    [SerializeField]
-    private Transform lvl1;
-    [SerializeField]
-    private Transform lvl2;
-    [SerializeField]
-    private Transform lvl3;
     [SerializeField]
     private TextMeshProUGUI timer;
     [SerializeField]
@@ -32,9 +24,27 @@ public class GameController : MonoBehaviour
     private GameObject[] buttons;
     
     public static GameController instance;
+
     private void Awake()
     {
         instance = this;
+
+        var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
+
+        var currentLevel = SceneManager.GetActiveScene().name;
+        if (currentLevel == "Level1")
+        {
+            timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level1["Time"], typeof(int));
+        }
+        else if (currentLevel == "Level2")
+        {
+            timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level2["Time"], typeof(int));
+        }
+        else if (currentLevel == "Level3")
+        {
+            timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level3["Time"], typeof(int));
+        }
+
         menu.SetActive(false);
         options.SetActive(false);
         resultsScreen.SetActive(false);
@@ -60,9 +70,37 @@ public class GameController : MonoBehaviour
 
     public void EndLevel()
     {
-        resultsText.text = $"Time: {GetGameTime()}";
+        var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
+
+        var currentLevel = SceneManager.GetActiveScene().name;
+        if (currentLevel == "Level1")
+        {
+            user.userLevels.Level1["Time"] = timeSeconds;
+            user.userLevels.Level1["Finished"] = true;
+            user.userLevels.Level2["Started"] = true;
+        }
+        else if (currentLevel == "Level2")
+        {
+            user.userLevels.Level2["Time"] = timeSeconds;
+            user.userLevels.Level2["Finished"] = true;
+            user.userLevels.Level3["Started"] = true;
+        }
+        else if (currentLevel == "Level3")
+        {
+            user.userLevels.Level3["Time"] = timeSeconds;
+            user.userLevels.Level3["Finished"] = true;
+        }
+
+        resultsText.text = $"Czas: {GetGameTime()}";
         ShowResults();
-        Time.timeScale = 0;;
+        Time.timeScale = 0;
+        user.WriteLevels();
+    }
+
+    public void FinishLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
 
     public void ChangeHudVisibility()
@@ -100,6 +138,18 @@ public class GameController : MonoBehaviour
 
     public void SaveAndQuit()
     {
+        var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
+
+        var currentLevel = SceneManager.GetActiveScene().name;
+        if (currentLevel == "Level1")
+            user.userLevels.Level1["Time"] = timeSeconds;
+        else if (currentLevel == "Level2")
+            user.userLevels.Level2["Time"] = timeSeconds;
+        else if (currentLevel == "Level3")
+            user.userLevels.Level3["Time"] = timeSeconds;
+
+        user.WriteLevels();
+
         SceneManager.LoadScene("Menu");
     }
 
