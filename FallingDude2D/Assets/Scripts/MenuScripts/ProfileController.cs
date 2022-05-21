@@ -149,11 +149,14 @@ public class ProfileController : MonoBehaviour
         var user = currentUser.GetComponent<CurrentUser>();
 
         user.userData.Nickname = nicknameField.text;
+        user.userLevels.NickName = nicknameField.text;
         user.userData.Name = nameField.text;
         user.userData.Surname = surnameField.text;
         user.SetBirthDate(birthDateField.text);
 
         currentUser.GetComponent<CurrentUser>().WriteUser();
+
+        currentUser.GetComponent<CurrentUser>().WriteLevels();
 
         GoToMain();
     }

@@ -76,19 +76,31 @@ public class GameController : MonoBehaviour
         if (currentLevel == "Level1")
         {
             user.userLevels.Level1["Time"] = timeSeconds;
-            user.userLevels.Level1["Finished"] = true;
-            user.userLevels.Level2["Started"] = true;
+            if (!(bool)user.userLevels.Level1["Finished"])
+            {
+                user.userLevels.Level1["Finished"] = true;
+                user.userLevels.Level1["FinishTime"] = timeSeconds;
+                user.userLevels.Level2["Started"] = true;
+            }
         }
         else if (currentLevel == "Level2")
         {
             user.userLevels.Level2["Time"] = timeSeconds;
-            user.userLevels.Level2["Finished"] = true;
-            user.userLevels.Level3["Started"] = true;
+            if (!(bool)user.userLevels.Level2["Finished"])
+            {
+                user.userLevels.Level2["Finished"] = true;
+                user.userLevels.Level2["FinishTime"] = timeSeconds;
+                user.userLevels.Level3["Started"] = true;
+            }
         }
         else if (currentLevel == "Level3")
         {
             user.userLevels.Level3["Time"] = timeSeconds;
-            user.userLevels.Level3["Finished"] = true;
+            if (!(bool)user.userLevels.Level3["Finished"])
+            {
+                user.userLevels.Level3["Finished"] = true;
+                user.userLevels.Level3["FinishTime"] = timeSeconds;
+            }
         }
 
         resultsText.text = $"Czas: {GetGameTime()}";

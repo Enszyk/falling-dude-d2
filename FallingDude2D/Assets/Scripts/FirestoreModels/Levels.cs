@@ -7,6 +7,9 @@ using Firebase.Firestore;
 [FirestoreData]
 public struct Levels
 {
+    [FirestoreProperty("NickName")]
+    public string NickName { get; set; }
+
     [FirestoreProperty("Level1")]
     public Dictionary<string, object> Level1 { get; set; }
 
