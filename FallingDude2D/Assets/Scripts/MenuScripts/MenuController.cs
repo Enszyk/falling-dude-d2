@@ -14,6 +14,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject optionsScreen;
     [SerializeField] private GameObject levelsScreen;
     [SerializeField] private GameObject levelMenuScreen;
+    [SerializeField] private GameObject rankingScreen;
 
     [SerializeField] private GameObject confirmScreen;
 
@@ -102,6 +103,11 @@ public class MenuController : MonoBehaviour
     public void GoToLevels()
     {
         ChangeScreen(levelsScreen);
+    }
+
+    public void GoToRanking()
+    {
+        ChangeScreen(rankingScreen);
     }
 
     public void GoToStartScreen()
