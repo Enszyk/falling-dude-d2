@@ -91,8 +91,11 @@ public class MenuController : MonoBehaviour
 
     private void ChangeScreen(GameObject screen)
     {
-        fadeOut = true;
-        nextScreen = screen;
+        if (!fadeIn && !fadeOut)
+        {
+            fadeOut = true;
+            nextScreen = screen;
+        }
     }
 
     public void GoToSignInScreen()

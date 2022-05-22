@@ -12849,7 +12849,7 @@ MonoBehaviour:
   errorScreen: {fileID: 13155606}
   errorMessage: {fileID: 1457780850}
   backgroundMusic: {fileID: 1923777207}
-  screenChangeSpeed: 1.8
+  screenChangeSpeed: 2.5
 --- !u!4 &1544786910
 Transform:
   m_ObjectHideFlags: 0
