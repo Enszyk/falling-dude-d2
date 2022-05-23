@@ -43,6 +43,7 @@ public class RankingController : MonoBehaviour
         currentRanking.SetActive(false);
         rankingLvL1.SetActive(true);
         currentRanking = rankingLvL1;
+        currentRanking.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
         buttonLvL1.GetComponent<Button>().interactable = false;
 
         buttonLvL3.GetComponent<Button>().interactable = true;
@@ -55,6 +56,7 @@ public class RankingController : MonoBehaviour
         currentRanking.SetActive(false);
         rankingLvL2.SetActive(true);
         currentRanking = rankingLvL2;
+        currentRanking.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
         buttonLvL2.GetComponent<Button>().interactable = false;
 
         buttonLvL1.GetComponent<Button>().interactable = true;
@@ -67,6 +69,7 @@ public class RankingController : MonoBehaviour
         currentRanking.SetActive(false);
         rankingLvL3.SetActive(true);
         currentRanking = rankingLvL3;
+        currentRanking.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
         buttonLvL3.GetComponent<Button>().interactable = false;
 
         buttonLvL1.GetComponent<Button>().interactable = true;
@@ -79,6 +82,7 @@ public class RankingController : MonoBehaviour
         currentRanking.SetActive(false);
         rankingAll.SetActive(true);
         currentRanking = rankingAll;
+        currentRanking.GetComponent<ScrollRect>().verticalNormalizedPosition = 1;
         buttonAll.GetComponent<Button>().interactable = false;
 
         buttonLvL1.GetComponent<Button>().interactable = true;
@@ -191,6 +195,8 @@ public class RankingController : MonoBehaviour
             time = FormatTime(listLvLAll[i].Item2);
             AddToRanking(scrollAll, name, time);
         }
+
+        gameObject.SetActive(false);
     }
 
     private string FormatTime(int timeSeconds)

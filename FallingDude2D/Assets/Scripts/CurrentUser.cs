@@ -8,8 +8,11 @@ public class CurrentUser : MonoBehaviour
 {
     private static CurrentUser instance;
 
+    public static string nickName = "";
+
     public User userData;
     public Levels userLevels;
+
     public string userId;
 
     private FirebaseFirestore firestore;
@@ -88,6 +91,7 @@ public class CurrentUser : MonoBehaviour
             if (task.Exception == null)
             {
                 userData = task.Result.ConvertTo<User>();
+                nickName = userData.Nickname;
                 GetUserLevels();
                 Settings.hudVisibility = userData.HudVisibility;
                 Settings.isTimerOn = userData.IsTimerOn;

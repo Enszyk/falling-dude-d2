@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0ea98e441ac44451ae265dfd35a8061, type: 2}
   m_sharedMaterial: {fileID: 6396724891778081466, guid: e0ea98e441ac44451ae265dfd35a8061, type: 2}
@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2641626913003903484}
   - component: {fileID: 2641626913003903475}
+  - component: {fileID: -1696694598442694533}
   m_Layer: 5
   m_Name: Row
   m_TagString: Untagged
@@ -332,3 +333,15 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &-1696694598442694533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2641626913003903485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dab207dbc4be457bb64b36046e3aa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
