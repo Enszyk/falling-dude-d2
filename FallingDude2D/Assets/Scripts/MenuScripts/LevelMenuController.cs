@@ -11,6 +11,7 @@ public class LevelMenuController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI levelName;
     [SerializeField] TextMeshProUGUI levelTime;
+    [SerializeField] TextMeshProUGUI levelFinishTime;
     [SerializeField] Button resetButton;
     [SerializeField] Image trophyImage;
 
@@ -39,10 +40,13 @@ public class LevelMenuController : MonoBehaviour
         if (!(bool)level["Finished"])
         {
             trophyImage.color = new Color32(0, 0, 0, 255);
+            levelFinishTime.text = "--:--:--";
         }
         else
         {
             trophyImage.color = new Color32(255, 255, 255, 255);
+            var finishTime = (int)System.Convert.ChangeType(level["FinishTime"], typeof(int));
+            levelFinishTime.text = FormatTime(finishTime);
         }
 
         var time = (int)System.Convert.ChangeType(level["Time"], typeof(int));

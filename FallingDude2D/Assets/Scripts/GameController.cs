@@ -29,21 +29,21 @@ public class GameController : MonoBehaviour
     {
         instance = this;
 
-        var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
+        //var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
 
-        var currentLevel = SceneManager.GetActiveScene().name;
-        if (currentLevel == "Level1")
-        {
-            timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level1["Time"], typeof(int));
-        }
-        else if (currentLevel == "Level2")
-        {
-            timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level2["Time"], typeof(int));
-        }
-        else if (currentLevel == "Level3")
-        {
-            timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level3["Time"], typeof(int));
-        }
+        //var currentLevel = SceneManager.GetActiveScene().name;
+        //if (currentLevel == "Level1")
+        //{
+        //    timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level1["Time"], typeof(int));
+        //}
+        //else if (currentLevel == "Level2")
+        //{
+        //    timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level2["Time"], typeof(int));
+        //}
+        //else if (currentLevel == "Level3")
+        //{
+        //    timeSeconds = (int)System.Convert.ChangeType(user.userLevels.Level3["Time"], typeof(int));
+        //}
 
         menu.SetActive(false);
         options.SetActive(false);
@@ -75,8 +75,8 @@ public class GameController : MonoBehaviour
         var currentLevel = SceneManager.GetActiveScene().name;
         if (currentLevel == "Level1")
         {
-            user.userLevels.Level1["Time"] = timeSeconds;
-            if (!(bool)user.userLevels.Level1["Finished"])
+            user.userLevels.Level1["Time"] = (int)System.Convert.ChangeType(user.userLevels.Level1["Time"], typeof(int)) + timeSeconds; 
+            if (!(bool)user.userLevels.Level1["Finished"] || (int)System.Convert.ChangeType(user.userLevels.Level1["FinishTime"], typeof(int)) > timeSeconds)
             {
                 user.userLevels.Level1["Finished"] = true;
                 user.userLevels.Level1["FinishTime"] = timeSeconds;
@@ -85,8 +85,8 @@ public class GameController : MonoBehaviour
         }
         else if (currentLevel == "Level2")
         {
-            user.userLevels.Level2["Time"] = timeSeconds;
-            if (!(bool)user.userLevels.Level2["Finished"])
+            user.userLevels.Level2["Time"] = (int)System.Convert.ChangeType(user.userLevels.Level2["Time"], typeof(int)) + timeSeconds;
+            if (!(bool)user.userLevels.Level2["Finished"] || (int)System.Convert.ChangeType(user.userLevels.Level2["FinishTime"], typeof(int)) > timeSeconds)
             {
                 user.userLevels.Level2["Finished"] = true;
                 user.userLevels.Level2["FinishTime"] = timeSeconds;
@@ -95,8 +95,8 @@ public class GameController : MonoBehaviour
         }
         else if (currentLevel == "Level3")
         {
-            user.userLevels.Level3["Time"] = timeSeconds;
-            if (!(bool)user.userLevels.Level3["Finished"])
+            user.userLevels.Level3["Time"] = (int)System.Convert.ChangeType(user.userLevels.Level3["Time"], typeof(int)) + timeSeconds;
+            if (!(bool)user.userLevels.Level3["Finished"] || (int)System.Convert.ChangeType(user.userLevels.Level3["FinishTime"], typeof(int)) > timeSeconds)
             {
                 user.userLevels.Level3["Finished"] = true;
                 user.userLevels.Level3["FinishTime"] = timeSeconds;
@@ -154,11 +154,11 @@ public class GameController : MonoBehaviour
 
         var currentLevel = SceneManager.GetActiveScene().name;
         if (currentLevel == "Level1")
-            user.userLevels.Level1["Time"] = timeSeconds;
+            user.userLevels.Level1["Time"] = (int)System.Convert.ChangeType(user.userLevels.Level1["Time"], typeof(int)) + timeSeconds;
         else if (currentLevel == "Level2")
-            user.userLevels.Level2["Time"] = timeSeconds;
+            user.userLevels.Level2["Time"] = (int)System.Convert.ChangeType(user.userLevels.Level2["Time"], typeof(int)) + timeSeconds;
         else if (currentLevel == "Level3")
-            user.userLevels.Level3["Time"] = timeSeconds;
+            user.userLevels.Level3["Time"] = (int)System.Convert.ChangeType(user.userLevels.Level3["Time"], typeof(int)) + timeSeconds;
 
         user.WriteLevels();
 
