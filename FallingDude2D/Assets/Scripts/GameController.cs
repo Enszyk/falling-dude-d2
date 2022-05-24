@@ -73,7 +73,6 @@ public class GameController : MonoBehaviour
     public void EndLevel()
     {
         backgroundMusic.GetComponent<AudioSource>().Pause();
-        AudioSource.PlayClipAtPoint(trophySound, transform.position);
 
         var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
 
@@ -110,6 +109,7 @@ public class GameController : MonoBehaviour
 
         resultsText.text = $"Czas: {GetGameTime()}";
         ShowResults();
+        AudioSource.PlayClipAtPoint(trophySound, resultsScreen.transform.position);
         Time.timeScale = 0;
         user.WriteLevels();
     }
