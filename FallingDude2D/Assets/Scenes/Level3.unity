@@ -2190,7 +2190,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f3791916b1c44ffaa60cae555006df1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 34cbb00ccd97845c98ad670640d4df7b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2493,6 +2493,7 @@ MonoBehaviour:
   - {fileID: 1877365456}
   - {fileID: 1488400855}
   - {fileID: 1133715712}
+  trophySound: {fileID: 8300000, guid: 25c9b19df9d2a42579383ee514863927, type: 3}
 --- !u!4 &770782668
 Transform:
   m_ObjectHideFlags: 0

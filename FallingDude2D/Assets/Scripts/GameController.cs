@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     private GameObject backgroundMusic;
     [SerializeField]
     private GameObject[] buttons;
+    [SerializeField]
+    private AudioClip trophySound;
     
     public static GameController instance;
 
@@ -70,6 +72,9 @@ public class GameController : MonoBehaviour
 
     public void EndLevel()
     {
+        backgroundMusic.GetComponent<AudioSource>().Pause();
+        AudioSource.PlayClipAtPoint(trophySound, transform.position);
+
         var user = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
 
         var currentLevel = SceneManager.GetActiveScene().name;
