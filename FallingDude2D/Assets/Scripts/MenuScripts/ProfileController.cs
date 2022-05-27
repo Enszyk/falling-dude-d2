@@ -21,6 +21,9 @@ public class ProfileController : MonoBehaviour
     [SerializeField] private TMP_InputField surnameField;
     [SerializeField] private TMP_InputField birthDateField;
 
+    [SerializeField] private TextMeshProUGUI SignOutButtonText;
+    [SerializeField] private Button EditProfileButton;
+
     [SerializeField] private GameObject currentUser;
 
     private void Awake()
@@ -31,6 +34,16 @@ public class ProfileController : MonoBehaviour
     private void OnEnable()
     {
         GoToMain();
+        if (MenuController.offline)
+        {
+            SignOutButtonText.text = "Zaloguj się";
+            EditProfileButton.interactable = false;
+        }
+        else
+        {
+            SignOutButtonText.text = "Wyloguj się";
+            EditProfileButton.interactable = true;
+        }
     }
 
     private string GetAge(System.DateTime birthDate)
@@ -47,7 +60,7 @@ public class ProfileController : MonoBehaviour
     {
         int year = birthDate.Year;
         int month = birthDate.Month;
-        int day = birthDate.Day + 1;
+        int day = birthDate.Day;
 
         string dayS = $"{day}";
         if (day < 10)
@@ -70,7 +83,7 @@ public class ProfileController : MonoBehaviour
         nicknameText.GetComponent<TextMeshProUGUI>().text = userData.Nickname;
         nameText.GetComponent<TextMeshProUGUI>().text = userData.Name;
         surnameText.GetComponent<TextMeshProUGUI>().text = userData.Surname;
-        birthDateText.GetComponent<TextMeshProUGUI>().text = GetAge(userData.BirthDate.ToDateTime());
+        birthDateText.GetComponent<TextMeshProUGUI>().text = GetAge(userData.BirthDate);
     } 
 
     public void GoToEdit()
@@ -84,7 +97,7 @@ public class ProfileController : MonoBehaviour
         nicknameField.text = userData.Nickname;
         nameField.text = userData.Name;
         surnameField.text = userData.Surname;
-        birthDateField.text = GetBirthDate(userData.BirthDate.ToDateTime());
+        birthDateField.text = GetBirthDate(userData.BirthDate);
     }
 
     private bool CheckTextField(string text)
@@ -152,7 +165,12 @@ public class ProfileController : MonoBehaviour
         user.userLevels.NickName = nicknameField.text;
         user.userData.Name = nameField.text;
         user.userData.Surname = surnameField.text;
-        user.SetBirthDate(birthDateField.text);
+
+        string[] dateFields = birthDateField.text.Split('-');
+        System.Int32.TryParse(dateFields[0], out int day);
+        System.Int32.TryParse(dateFields[1], out int month);
+        System.Int32.TryParse(dateFields[2], out int year);
+        user.SetBirthDate($"{day}-{month}-{year}");
 
         currentUser.GetComponent<CurrentUser>().WriteUser();
 

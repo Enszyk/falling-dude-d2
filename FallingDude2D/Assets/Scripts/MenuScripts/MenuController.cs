@@ -30,6 +30,10 @@ public class MenuController : MonoBehaviour
     private bool fadeIn = false;
     private bool fadeOut = false;
 
+    public float loadingTimeout = 10f;
+
+    public static bool offline = false;
+
     private void Awake()
     {
         startScreen.SetActive(false);
@@ -120,7 +124,12 @@ public class MenuController : MonoBehaviour
 
     public void ShowLoadingScreen()
     {
-        ChangeScreen(loadingScreen);
+        StartCoroutine(LoadingTimeout());
+        currentScreen.SetActive(false);
+        loadingScreen.GetComponent<RectTransform>().anchoredPosition =
+            new Vector3(mainPosition.x, mainPosition.y + 100, mainPosition.z);
+        loadingScreen.SetActive(true);
+        currentScreen = loadingScreen;
     }
 
     public void GoToLevelMenu(string name)
@@ -171,6 +180,14 @@ public class MenuController : MonoBehaviour
         ChangeScreen(menuScreen);
     }
 
+    public void PlayOffline()
+    {
+        offline = true;
+        var currentUser = GameObject.Find("CurrentUser").GetComponent<CurrentUser>();
+        currentUser.LoadOfflineSave();
+        GoToMenu();
+    }
+
     public void GoToProfile()
     {
         ChangeScreen(profileScreen);
@@ -181,9 +198,14 @@ public class MenuController : MonoBehaviour
         ChangeScreen(optionsScreen);
     }
 
-    IEnumerator Wait(float seconds)
+    IEnumerator LoadingTimeout()
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(loadingTimeout);
+        if(currentScreen == loadingScreen)
+        {
+            GoToStartScreen();
+            ShowError("Problem z internetem. Gra jest w trybie offline.");
+        }
     }
 
 }

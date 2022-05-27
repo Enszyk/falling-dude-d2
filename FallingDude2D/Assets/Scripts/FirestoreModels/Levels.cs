@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Firestore;
-
+using System;
 
 [FirestoreData]
+[Serializable]
 public struct Levels
 {
     [FirestoreProperty("NickName")]

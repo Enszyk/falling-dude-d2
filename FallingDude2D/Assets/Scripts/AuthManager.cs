@@ -81,7 +81,8 @@ public class AuthManager : MonoBehaviour
             yield return new WaitUntil(predicate: () => reloadUserTask.IsCompleted);
 
             currentUser.GetComponent<CurrentUser>().SetUserId(user.UserId);
-            //menuController.GetComponent<MenuController>().ShowLoadingScreen();
+            menuController.GetComponent<MenuController>().ShowLoadingScreen();
+            MenuController.offline = false;
         }
         else
         {
@@ -134,24 +135,24 @@ public class AuthManager : MonoBehaviour
             FirebaseException firebaseEx = LoginTask.Exception.GetBaseException() as FirebaseException;
             AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
 
-            message = "Login Failed!";
+            message = "Brak internetu!";
 
             switch(errorCode)
             {
                 case AuthError.MissingEmail:
-                    message = "Missing Email";
+                    message = "Brakuje Email'a";
                     break;
                 case AuthError.MissingPassword:
-                    message = "Missing Password";
+                    message = "Brakuje Hasła";
                     break;
                 case AuthError.WrongPassword:
-                    message = "Wrong Password";
+                    message = "Złe Hasło";
                     break;
                 case AuthError.InvalidEmail:
-                    message = "Invalid Email";
+                    message = "Zły Email";
                     break;
                 case AuthError.UserNotFound:
-                    message = "Account does not exist";
+                    message = "Konto nie istnieje";
                     break;
             }
             menuController.GetComponent<MenuController>().ShowError(message);
@@ -161,7 +162,8 @@ public class AuthManager : MonoBehaviour
             user = LoginTask.Result;
             Debug.Log("User signed in successfully");
             currentUser.GetComponent<CurrentUser>().SetUserId(user.UserId);
-            //menuController.GetComponent<MenuController>().ShowLoadingScreen();
+            menuController.GetComponent<MenuController>().ShowLoadingScreen();
+            MenuController.offline = false;
         }
     }
 

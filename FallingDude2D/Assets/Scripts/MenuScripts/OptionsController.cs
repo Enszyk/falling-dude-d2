@@ -50,8 +50,10 @@ public class OptionsController : MonoBehaviour
 
     private void OnDisable()
     {
-        if(currentUser != null && currentUser.GetComponent<CurrentUser>().userData.Nickname != null)
+        if (currentUser != null && currentUser.GetComponent<CurrentUser>().userData.Nickname != null)
+        {
             currentUser.GetComponent<CurrentUser>().WriteUser();
+        }
     }
 
 }

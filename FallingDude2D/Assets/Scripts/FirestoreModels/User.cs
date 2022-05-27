@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Firestore;
+using System;
 
 [FirestoreData]
+[Serializable]
 public struct User
 {
     [FirestoreProperty]
@@ -16,7 +18,7 @@ public struct User
     public string Surname { get; set; }
 
     [FirestoreProperty]
-    public Timestamp BirthDate { get; set; }
+    public DateTime BirthDate { get; set; }
 
     //Settings
     [FirestoreProperty("MusicVolume")]
