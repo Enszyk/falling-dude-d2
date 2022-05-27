@@ -204,7 +204,7 @@ public class MenuController : MonoBehaviour
         if(currentScreen == loadingScreen)
         {
             GoToStartScreen();
-            ShowError("Problem z internetem. Gra jest w trybie offline.");
+            ShowError("Problem z internetem. Nie można wczytać gry");
         }
     }
 
