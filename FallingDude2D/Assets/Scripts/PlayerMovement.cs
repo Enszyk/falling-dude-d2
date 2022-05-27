@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         _isJumpLoading = false;
         if (!isMidAir())
         {
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
+            AudioSource.PlayClipAtPoint(audioClip, transform.position, 6f);
             _body.velocity = new Vector2(GetSpeedWhenJumping(), GetJumpPower());
         }
 
