@@ -7,26 +7,26 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField]private GameObject startScreen;
-    [SerializeField] private GameObject signInScreen;
-    [SerializeField] private GameObject profileScreen;
-    [SerializeField] private GameObject menuScreen;
-    [SerializeField] private GameObject optionsScreen;
-    [SerializeField] private GameObject levelsScreen;
-    [SerializeField] private GameObject levelMenuScreen;
-    [SerializeField] private GameObject rankingScreen;
+    [SerializeField] public GameObject startScreen;
+    [SerializeField] public GameObject signInScreen;
+    [SerializeField] public GameObject profileScreen;
+    [SerializeField] public GameObject menuScreen;
+    [SerializeField] public GameObject optionsScreen;
+    [SerializeField] public GameObject levelsScreen;
+    [SerializeField] public GameObject levelMenuScreen;
+    [SerializeField] public GameObject rankingScreen;
 
-    [SerializeField] private GameObject confirmScreen;
+    [SerializeField] public GameObject confirmScreen;
 
-    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] public GameObject loadingScreen;
 
-    [SerializeField] private GameObject errorScreen;
-    [SerializeField] private GameObject errorMessage;
-    [SerializeField] private GameObject backgroundMusic;
-    [SerializeField] private float screenChangeSpeed;
-    private GameObject currentScreen;
+    [SerializeField] public GameObject errorScreen;
+    [SerializeField] public GameObject errorMessage;
+    [SerializeField] public GameObject backgroundMusic;
+    [SerializeField] public float screenChangeSpeed;
+    public GameObject currentScreen;
     private GameObject nextScreen;
-    private Vector3 mainPosition;
+    public Vector3 mainPosition;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
@@ -36,15 +36,22 @@ public class MenuController : MonoBehaviour
 
     private void Awake()
     {
-        startScreen.SetActive(false);
-        signInScreen.SetActive(false);
-        profileScreen.SetActive(false);
-        optionsScreen.SetActive(false);
-        errorScreen.SetActive(false);
-        levelsScreen.SetActive(false);
-        confirmScreen.SetActive(false);
-        levelMenuScreen.SetActive(false);
-        loadingScreen.SetActive(false);
+        if (startScreen != null)
+        {
+            startScreen.SetActive(false);
+            signInScreen.SetActive(false);
+            profileScreen.SetActive(false);
+            optionsScreen.SetActive(false);
+            errorScreen.SetActive(false);
+            levelsScreen.SetActive(false);
+            confirmScreen.SetActive(false);
+            levelMenuScreen.SetActive(false);
+            loadingScreen.SetActive(false);
+
+
+            mainPosition = startScreen.GetComponent<RectTransform>().anchoredPosition;
+            currentScreen = startScreen;
+        }
 
         if (AuthManager.instance != null)
         {
@@ -52,9 +59,6 @@ public class MenuController : MonoBehaviour
             backgroundMusic.GetComponent<AudioSource>().Play();
             backgroundMusic.GetComponent<AudioSource>().volume = Settings.musicVolume;
         }
-
-        mainPosition = startScreen.GetComponent<RectTransform>().anchoredPosition;
-        currentScreen = startScreen;
     }
 
     private void Update()
