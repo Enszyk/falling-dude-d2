@@ -11,9 +11,9 @@ public class AuthManager : MonoBehaviour
     public static AuthManager instance;
 
     [SerializeField]
-    private GameObject menuController;
+    public GameObject menuController;
     [SerializeField]
-    private GameObject currentUser;
+    public GameObject currentUser;
 
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;

@@ -8,7 +8,7 @@ using System;
 
 public class CurrentUser : MonoBehaviour
 {
-    private static CurrentUser instance;
+    public static CurrentUser instance;
 
     public static string nickName = "";
 
